@@ -4,43 +4,85 @@ const pokemonGuessEl = document.getElementById("guess");
 const pointsEl = document.getElementById("points");
 
 let points = 0;
-
-const randomPokemon = Math.floor(Math.random() * 898) + 1;
-console.log(randomPokemon);
+let randomPokemon = 0;
 
 let pokemonName = 'name';
+let pokemonsInTheGenerations = {};
+
+// finding out how many pokemons in the selected gen
+function getNuberOfPokemons(gen) {
+    fetch(`https://pokeapi.co/api/v2/${gen}`)
+        .then(result => {
+            return result.json();
+        })
+        .then(data => {
+            return pokemonsInTheGenerations = data.pokemon_species;
+        })
+        .then(pokemonsInTheGenerations => {
+            gameEl.classList.remove(`hidden`);
+            getRandomPokemon();
+        })
+        .catch(error => {
+            console.error(`There has been a problem with your fetch operation: ${error}`);
+        });
+}
 
 
-// geting data form the poke api
-fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}`)
-    .then(result => {
-        return result.json();
-    })
-    .then(data =>{
-        console.log(data);
-        gameEl.classList.remove("hidden");
-        pokemonImgEl.src = `${data.sprites.front_shiny}`;
-        return pokemonName = data.name;
-    })
-    .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
+// geting a random pokemon
+function getRandomPokemon() {
+    let pokemonNum = Math.floor(Math.random() * pokemonsInTheGenerations.length);
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonsInTheGenerations[pokemonNum].name}/`;
+    fetch(url)
+        .then(result => {
+            return result.json();
+        })
+        .then(data => {
+            pokemonImgEl.classList.add("gray");
+            pokemonImgEl.src = `${data.sprites.front_default}`;
+            console.log(data.name);
+            return pokemonName = data.name;
+        })
+        .catch(error => {
+            console.error(`There has been a problem with your fetch operation: ${error}`);
+        })
+}
 
-function handle(e){
+
+
+
+
+// on submit
+function handle(e) {
     if(e.keyCode === 13){
         e.preventDefault(); 
 
-        console.log(pokemonGuessEl.value);
         guess = pokemonGuessEl.value;
-
+        pokemonGuessEl.value = "";
         guess = guess.toLowerCase();
 
         if (guess === pokemonName) {
-            alert("korekt");
+            pokemonImgEl.classList.remove("gray");
+
             points += 1;
 
             pointsEl.innerHTML = `Points: ${points}`;
+
+            getRandomPokemon();
+            pokemonGuessEl.value = "";
+        } else {
+            pokemonGuessEl.value = "";
         }
 
     }
+}
+
+
+// putting up so you can choose generations
+function getGeneration() {
+    document.getElementsByName("generation")
+        .forEach(radio => {
+            if (radio.checked) {
+                getNuberOfPokemons(radio.value);
+            }
+        });
 }

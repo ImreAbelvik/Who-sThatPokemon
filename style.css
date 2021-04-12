@@ -1,10 +1,12 @@
 body {
     background-color: rgb(222, 217, 226);
+    text-align: center;
 }
 
 .game {
-    text-align: center;
+    font-size: 1.2em;
 }
+
 
 .hidden {
     display: none;
@@ -15,9 +17,24 @@ img {
     border: 1px solid black;
     border-radius: 5%;
     width: 300px;
+}
+
+.gray {
     filter: grayscale(100%);
 }
 
 button {
-    margin-top: 0.3em;
+    margin-top: 1em;
+    font-size: 1.2em;
+}
+
+.chooseGen {
+    display: flex;
+}
+
+.grid {
+    border: 1px solid black;
+    border-radius: 15%;
+    margin: auto;
+    padding: 0.5em;
 }

@@ -8,15 +8,60 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="chooseGen">
+        <div class="grid">
+            <label for="gen1" >Gen1</label>
+            <br>
+            <input type="radio" class="gen" name="generation" id="" value="generation/1/">
+        </div>
+        <div class="grid">
+            <label for="gen2">Gen2</label>
+            <br>
+            <input type="radio" class="gen" name="generation" id="" value="generation/2/">
+        </div>
+        <div class="grid">
+            <label for="gen3">Gen3</label>
+            <br>
+            <input type="radio" class="gen" name="generation" id="" value="generation/3/">
+        </div>
+        <div class="grid">
+            <label for="gen4">Gen4</label>
+            <br>
+            <input type="radio" class="gen" name="generation" id="" value="generation/4/">
+        </div>
+        <div class="grid">
+            <label for="gen5">Gen5</label>
+            <br>
+            <input type="radio" class="gen" name="generation" id="" value="generation/5/">
+        </div>
+        <div class="grid">
+            <label for="gen6">Gen6</label>
+            <br>
+            <input type="radio" class="gen" name="generation" id="" value="generation/6/">
+        </div>
+        <div class="grid">
+            <label for="gen7">Gen7</label>
+            <br>
+            <input type="radio" class="gen" name="generation" id="" value="generation/7/">
+        </div>
+        <div class="grid">
+            <label for="gen8">Gen8</label>
+            <br>
+            <input type="radio" class="gen" name="generation" id="" value="generation/8/">
+        </div>
+    </div>
     
-    <div id="game" class="game" class="hidden">
+    <button onclick="getGeneration()">Sett generations</button>
+
+    <div id="game" class="game hidden">
+        <h1>Who's that Pokemon?</h1>
+        <img id="pokemonImg" src="" alt="pokemon" class="gray">
         <h3 id="points">Points:</h3>
-        <img id="pokemonImg" src="" alt="pokemon">
         <br>
         <form action="#">
-            <input type="text" name="guess" id="guess" onkeypress="handle(event)" placeholder="Press enter to submit" />
+            <input type="text" name="guess" id="guess" onkeypress="handle(event)" placeholder="Press enter to submit" autocomplete="off"/>
         </form>
-        
     </div>
 
     <script src="main.js"></script>
