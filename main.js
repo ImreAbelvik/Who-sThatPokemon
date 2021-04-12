@@ -9,7 +9,7 @@ let randomPokemon = 0;
 let pokemonName = 'name';
 let pokemonsInTheGenerations = {};
 
-// finding out how many pokemons in the selected gen
+// finding out how many pokemons in the selected generation
 function getNuberOfPokemons(gen) {
     fetch(`https://pokeapi.co/api/v2/${gen}`)
         .then(result => {
@@ -28,7 +28,7 @@ function getNuberOfPokemons(gen) {
 }
 
 
-// geting a random pokemon
+// geting a random pokemon from the selected generation
 function getRandomPokemon() {
     let pokemonNum = Math.floor(Math.random() * pokemonsInTheGenerations.length);
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonsInTheGenerations[pokemonNum].name}/`;
@@ -77,7 +77,7 @@ function handle(e) {
 }
 
 
-// putting up so you can choose generations
+// finding out the selected generation
 function getGeneration() {
     document.getElementsByName("generation")
         .forEach(radio => {
