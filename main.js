@@ -48,9 +48,6 @@ function getRandomPokemon() {
 }
 
 
-
-
-
 // on submit
 function handle(e) {
     if(e.keyCode === 13){
